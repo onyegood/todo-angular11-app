@@ -1,0 +1,63 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto mt-4">
+            <h4 class="text-center" *ngIf="!id">New Todo</h4>
+            <h4 class="text-center" *ngIf="id">Update Todo</h4>
+
+            <!-- <div class="alert alert-danger" *ngIf="todoForm.dirty && todoForm.invalid">Please enter a valid input.</div> -->
+
+            <div class="card">
+                <div class="card-body">
+                    <form (ngSubmit)="!todoForm.invalid && onSubmit()" #todoForm="ngForm">
+                        <div class="form-group mt-3">
+                            <label class="mb-2">Description</label>
+                            <input 
+                                class="form-control"
+                                minlength="5"
+                                [(ngModel)]="todo.description" 
+                                name="description" 
+                                required="required"
+                                #description="ngModel"
+                            />
+                            <span class="text-danger small" *ngIf="todoForm.dirty && description.invalid">
+                                Enter atleast 5 character length for description.
+                            </span>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="mb-2">Target Date</label>
+                            <input 
+                                type="date" 
+                                class="form-control" 
+                                required="required" 
+                                [ngModel]="todo.targetDate | date:'yyyy-MM-dd'" 
+                                (ngModelChange)="todo.targetDate = $event"
+                                name="targetDate"
+                                #targetDate="ngModel"
+                            />
+                            <span class="text-danger small" *ngIf="todoForm.dirty && targetDate.invalid">
+                                Target date is required
+                            </span>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="mb-2">Completed</label>
+                            <br />
+                            <input 
+                                type="checkbox"
+                                [(ngModel)]="todo.isDone" 
+                                name="isDone" 
+                            />
+                        </div>
+                        <div class="form-group mt-3 md-4">
+                            <button 
+                                type="submit"
+                                class="btn btn-success btn-block">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

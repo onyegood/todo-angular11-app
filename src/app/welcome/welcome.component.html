@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+    <h2 class="mt-4">Welcome!</h2>
+    <div>Welcome {{name}}. You can manage your todos <a routerLink="/todos">here</a></div>
+
+    <div *ngIf="message">{{message}}</div>
+    <div>Click here to get a customized message <button (click)="getWelcomeMessage()" class="btn btn-success">Get Welcome Message</button></div>
+
+    <div>
+        <button (click)="getWelcomeMessageById()" class="btn btn-danger">Click here</button>
+    </div>
+</div>
+
+
